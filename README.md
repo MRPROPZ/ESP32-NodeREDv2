@@ -4,3 +4,5 @@
 
 # การใช้งาน
 http://192.168.1.202:1880/ui
+MQTTin = publish
+MQTTout = subscribe
