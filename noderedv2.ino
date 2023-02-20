@@ -20,7 +20,6 @@ PubSubClient client(espClient);
 unsigned long lastMsg = 0;
 #define MSG_BUFFER_SIZE	(50)
 char msg[MSG_BUFFER_SIZE];
-int value = 0;
 
 void setup_wifi() {
 
@@ -107,7 +106,6 @@ void reconnect() {
       // Once connected, publish an announcement...
       client.publish("outTopic", "hello world");
       // ... and resubscribe
-      client.subscribe("inTopic");
       client.subscribe("/relay");
       client.subscribe("/led/red");
       client.subscribe("/led/green");
@@ -144,7 +142,6 @@ void loop() {
   unsigned long now = millis();
   if (now - lastMsg > 2000) {
     lastMsg = now;
-    ++value;
     float h = dht.readHumidity();    
     float t = dht.readTemperature();
     client.publish("/temp", String(t).c_str());
